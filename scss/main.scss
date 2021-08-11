@@ -1,0 +1,183 @@
+@import 'reset';
+@import 'fonts';
+@import 'baloons';
+@import 'clouds';
+
+$color_primary: #2CBC7C;
+
+:root {
+    font-family: Merriweather;
+}
+
+body {
+    background-color: rgba(black,0.09);
+    &::-webkit-scrollbar{
+        width: 0;
+    }
+}
+
+h1, h2 { color: $color_primary; }
+
+
+.header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 70px;
+    line-height: 70px;
+    text-transform: uppercase;
+    background-color: white;
+    .container {
+        width: 1050px;
+        margin: auto;
+        @media screen and (max-width: 1100px) {
+            width: 900px;
+        }
+    }
+    h1  {
+        font-size: 1.05rem;
+    }
+}
+
+.main {
+    .section {
+        height: 100vh;
+        .container {
+            // border: 1px dashed red;
+            width: 1050px;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @media screen and (max-width: 1100px) {
+                width: 900px;
+            }
+            .wrap-text-content {
+                // border: 1px dashed green;
+                margin: 0;
+                width: 30%;
+                height: 100%;
+                padding-top: 3em;
+                overflow: hidden;
+                @media screen and (max-width: 1100px) {
+                    width: 40%;
+                }
+                .nav-arrow {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .arrow {
+                        width: 100%;
+                        height: 11px;
+                        background-repeat: no-repeat;
+                        background-position: center top;
+                        &.arrow-up {
+                            background-image: url(../images/scroll-arrow-up.png);
+                            transform: translateY(40%);
+                        }
+                        &.arrow-down {
+                            background-image: url(../images/scroll-arrow-down.png);
+                            transform: translateY(-40%) translateX(-0.6px);
+                        }
+                        &:hover  {
+                            background-position: center bottom;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        &#first-flights { 
+            padding-top: 70px;
+        }
+        &#about {
+            .container {
+                background-image: url('../images/ground.png');
+                background-size: 100%;
+                background-position: left 0 bottom -180px;
+                background-repeat: no-repeat;
+            }
+
+        }
+        &#parachute {
+        }
+        &#english-channel { }
+        h2  {
+            font-size: 3rem;
+            width: 100%;
+            line-height: 4.0rem;
+            margin: 0 0 0.4em;
+        }
+        p  {
+            width: 100%;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            margin: 0 0 1em;
+        }
+    }
+}
+
+.cloud {
+    position: absolute;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 3;
+}
+
+
+.nav-dots  {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    .dot {
+        --factor: 1.5;
+        width: calc(var(--factor)*12px);
+        height: calc(var(--factor)*20px);
+        background-image: url('../images/nav-dot.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        position: relative;
+        &::before {
+            content: attr(data-title);
+            display: none;
+            position: absolute;
+            width: max-content;
+            padding: 5px;
+            transform: translateY(-50%);
+            right: 160%;
+            top: 35%;
+            background-color: $color_primary;
+            color: white;
+            z-index: -5;
+        }
+        &::after  {
+            display: none;
+            content: '';
+            position: absolute;
+            background-color: $color_primary;
+            width: 10px;
+            height: 10px;
+            transform: translate(-26px,-50%) rotate(-34deg) skewX(28deg);
+            top: 35%;
+            left: 50%;
+            z-index: -6;
+        }
+        &:hover  {
+            background-position-y: bottom;
+        }
+        &:hover::before, &:hover::after  {
+            display: block;
+        }
+        &.picked  {
+            background-position-y: bottom;
+        }
+    }
+}

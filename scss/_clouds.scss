@@ -1,0 +1,13 @@
+.main {
+    --factor: 0.75;
+    background-image: url('../images/cloud-lg1.png'), 
+                      url('../images/cloud-lg1.png'),
+                      url('../images/cloud-lg1.png'),
+                      url('../images/cloud-lg2.png');
+    background-size: calc(var(--factor)*488px) calc(var(--factor)*138px);
+    background-repeat: no-repeat;
+    background-position: top 3% left -30%,
+                         top 6% left 30%,
+                         top 10% left 30%,
+                         top 23% left 16%;
+}
